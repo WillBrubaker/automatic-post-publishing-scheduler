@@ -78,7 +78,7 @@ This plugin allows you to gain very precise control over when posts are publishe
 ![The 'Publish Now' link - available only to Admin users.](screenshot-6.png)
 
 ###7. The "Quick Edit" interface. Admin users can override scheduled time/date here.###
-![The "Quick Edit" interface. Admin users can override scheduled time/date here.](http://s-plugins.wordpress.org/automatic-post-publishing-scheduler/trunk/screenshot-7.png)
+![The "Quick Edit" interface. Admin users can override scheduled time/date here.](screenshot-7.png)
 
 
 ## Changelog ##
