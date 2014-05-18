@@ -7,6 +7,7 @@ Version: 2.0
 Author: Will Brubaker
 Author URI: http://www.willthewebmechanic.com
 License: GPL 3.0+
+Text Domain: automatic-post-publishing-scheduler
 */
 
 /**
