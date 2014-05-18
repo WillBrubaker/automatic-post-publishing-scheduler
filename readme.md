@@ -91,12 +91,15 @@ This plugin allows you to gain very precise control over when posts are publishe
 ### v1.3 ###
 
 1. minor changes and improvements in efficiency
+
 ### v1.2 ###
 
 1. Just fixing a typo. Thanks Joseph the random passer-by.
+
 ### v1.1 ###
 
 1. Now with actual php file goodness.
+
 ### v1.0 ###
 
 1. Initial Public Release
