@@ -45,7 +45,9 @@ This plugin allows you to gain very precise control over when posts are publishe
 
 = How can I support the development of this plugin? =
 
-= The most obvious way is to [donate](http://www.willthewebmechanic.com/automatic-post-publishing-scheduler/ "Support Future Development"). However, there are many other ways that you can contribute. =
+= The most obvious way is to =
+[donate](http://www.willthewebmechanic.com/automatic-post-publishing-scheduler/ "Support Future Development").
+= However, there are many other ways that you can contribute. =
 * By simply [rating](http://wordpress.org/support/view/plugin-reviews/automatic-post-publishing-scheduler "Review this plugin") this plugin you provide me valuable feedback on what is important to the users of this plugin.
 * If you find a bug, report it in the [support forums](http://wordpress.org/support/plugin/automatic-post-publishing-scheduler "Get Support").
 * If you would like to see more features, [let me know](http://wordpress.org/support/plugin/automatic-post-publishing-scheduler "Feature Request").
