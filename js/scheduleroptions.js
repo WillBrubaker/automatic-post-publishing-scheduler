@@ -5,6 +5,8 @@ jQuery(document).ready(function($) {
   $('#existing_count').val(timeSlotCount);
 
   $('#set_time_slots').on('submit', function(e) {
+    var overlay = $('.overlay', $(this));
+    overlay.show();
     e.preventDefault();
     var timeSlotCount = $('.hour_input').length;
     var existingCount = timeSlotCount;
@@ -24,13 +26,14 @@ jQuery(document).ready(function($) {
         $('.slot_input:last').remove();
         existingCount = i;
       }
-
     }
+   overlay.hide();
   });
 
   $('#assign_time_slots').on('submit', function(e) {
     e.preventDefault();
-
+    var overlay = $('.overlay', $(this));
+    overlay.show();
     $.post(ajaxurl, $(this).serializeArray(), function(data) {
       var i = 0;
       var timeSlotCount = $('.hour_input').length;
@@ -54,7 +57,7 @@ jQuery(document).ready(function($) {
           existingCount = i;
         }
       }
-
+     overlay.hide();
     }, 'json');
   });
 

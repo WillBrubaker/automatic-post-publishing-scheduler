@@ -1,0 +1,95 @@
+# Copyright (C) 2014 Publish Scheduler
+# This file is distributed under the same license as the Publish Scheduler package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Publish Scheduler 2.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/automatic-post-"
+"publishing-scheduler\n"
+"POT-Creation-Date: 2014-05-19 23:02:22+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: automatic-post-publishing-scheduler.php:68
+msgid "Publishing Scheduler Options"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:69
+#: automatic-post-publishing-scheduler.php:71
+msgid "Scheduler"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:163
+msgid "Donate to the future development of this plugin:"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:179
+msgid "Set Scheduler Options:"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:182
+msgid ""
+"Input the number of time slots required.  If the number entered is less than "
+"the existing number, slots will be removed from the bottom up.  Changes will "
+"not be saved until committed using the 'Assign time slots' form below."
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:188
+msgid "Number of time slots required:"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:197
+msgid ""
+"Use the form below to put times into your time slots.  Duplicates are "
+"allowed. Invalid values will be discarded.  Ordering will also be done "
+"during processing.  Changes will not take effect until the 'submit' button "
+"is pressed."
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:200
+msgid "Assign time slots:"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:213
+msgid "Enable days of the week in your publishing schedule."
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:214
+msgid ""
+"Weekdays that are checked are enabled by your publishing schedule.  This can "
+"be overridden by specific date in the next section."
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:231
+msgid "Define dates to exclude or allow in your publishing schedule"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:234
+msgid ""
+"Dates entered below will be excluded from your publishing schedule (for "
+"holidays, etc) unless the 'Check to allow' box is checked.  In that case "
+"publishing will be allowed on that specific date (overrides disabled days of "
+"the week from the section above)."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Publish Scheduler"
+msgstr ""
+
+#. #-#-#-#-#  automatic-post-publishing-scheduler.pot (Publish Scheduler 2.0)  #-#-#-#-#
+#. Plugin URI of the plugin/theme
+#. #-#-#-#-#  automatic-post-publishing-scheduler.pot (Publish Scheduler 2.0)  #-#-#-#-#
+#. Author URI of the plugin/theme
+msgid "http://www.willthewebmechanic.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Replaces default publishing with queued publishing."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Will Brubaker"
+msgstr ""

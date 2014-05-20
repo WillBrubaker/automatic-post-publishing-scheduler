@@ -3,7 +3,7 @@ Contributors: WilltheWebMechanic
 License: GPLv3.0+
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 2.0
+Stable tag: 2.0.1
 Tags: posts, publishing, scheduling, admin, author, automatic, blog, free, plugin
 Donate Link: http://www.willthewebmechanic.com/automatic-post-publishing-scheduler/
 
@@ -69,6 +69,14 @@ This plugin allows you to gain very precise control over when posts are publishe
 
 == Changelog ==
 
+= v2.0.1 =
+
+1. You spoke, I listened! New feature added. This plugin will now auto-schedule posts that are created with the "Automatic Featured Image Posts" plugin.
+2. Much progress made towards making this plugin translation friendly.
+3. Minor code optimizations.
+4. **Bug Fix** included/excluded dates input should now be working.
+5. CSS & JS improvements.
+
 = v2.0 =
 * Version 2.0 is a major re-do of this plugin, inspired by my recent attendace of WordCamp Miami. Huge shouts to all the people there who inspired me and inspired the re-write of this plugin.
 
@@ -84,6 +92,11 @@ This plugin allows you to gain very precise control over when posts are publishe
 1. Initial Public Release
 
 == Additional Information ==
+
+= Known Issues: =
+
+* At this time, even though duplicate time slots are allowed, they are not working. For best results, avoid duplicating time slots.
+
 
 = To Do List =
 * Improvements to UI

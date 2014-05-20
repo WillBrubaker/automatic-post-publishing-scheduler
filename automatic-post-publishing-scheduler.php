@@ -3,7 +3,7 @@
 Plugin Name: Publish Scheduler
 Plugin URI: http://www.willthewebmechanic.com
 Description: Replaces default publishing with queued publishing.
-Version: 2.0
+Version: 2.0.1
 Author: Will Brubaker
 Author URI: http://www.willthewebmechanic.com
 License: GPL 3.0+
@@ -34,7 +34,7 @@ class Publish_Scheduler
 
  static private $wwm_plugin_values = array(
   'name' => 'PublishScheduler',
-  'version' => '2.0',
+  'version' => '2.0.1',
   'slug' => 'PublishScheduler',
   'dbversion' => '1.5',//db version 1.1 was introduced in version 2.0, 1.2 in 2.1, 1.3 in 2.2, 1.4 in 2.3
   'supplementary' => array(
@@ -109,9 +109,9 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
  {
 
   wp_enqueue_script( 'publish-now-ajax', plugins_url( 'js/publishnow.js', __FILE__ ), array( 'jquery', 'jquery-ui-dialog' ), self::$wwm_plugin_values['version'], true );
-  wp_enqueue_style( 'jquery-ui-lightness', plugins_url( 'css/jquery-ui.min.css', __FILE__ ), array(), self::$wwm_plugin_values['version'] );      wp_enqueue_style( 'jquery-ui-dialog-min' );
+  wp_enqueue_style( 'jquery-ui-lightness', plugins_url( 'css/jquery-ui.min.css', __FILE__ ), array(), self::$wwm_plugin_values['version'] );
   if ( strpos( $_SERVER['REQUEST_URI'], 'page=PublishSchedule.php' ) ) {
-   wp_enqueue_script( 'scheduler-options-js', plugins_url( 'js/scheduleroptions.js', __FILE__ ), array( 'jquery', 'jquery-ui-datepicker' ), self::$wwm_plugin_values['version'], true );
+   wp_enqueue_script( 'scheduler-options-js', plugins_url( 'js/scheduleroptions.js', __FILE__ ), array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-tabs' ), self::$wwm_plugin_values['version'], true );
    wp_enqueue_style( 'scheduler-stylesheet', plugins_url( 'css/scheduler.css', __FILE__ ), null , self::$wwm_plugin_values['version'] );
   }
  }
@@ -175,7 +175,6 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
 
     </ul>
    </p>
-   <div id="overlay"><span class="preloader"></span></div>
    <h2><?php _e( 'Set Scheduler Options:', $this->text_domain ); ?></h2>
    <div class="updated">
     <p>
@@ -183,6 +182,7 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
     </p>
    </div>
    <form id="set_time_slots" method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
+    <div class="overlay"><span class="preloader"></span></div>
     <input type="hidden" name="action" value="set_time_slots">
     <input id="existing_count" type="hidden" name="existing_count" value="">
     <label for="time_slots"><?php _e( 'Number of time slots required:', $this->text_domain ); ?><br>
@@ -199,6 +199,7 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
    </div>
    <h4><?php _e( 'Assign time slots:', $this->text_domain ); ?></h4><br>
    <form id="assign_time_slots" method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
+    <div class="overlay"><span class="preloader"></span></div>
     <input type="hidden" name="action" value="assign_time_slots">
     <?php
     //$html comes from extract( $variable_html )
@@ -561,7 +562,7 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
   } elseif ( isset( $_POST['_inline_edit'] ) && wp_verify_nonce( $_POST['_inline_edit'], 'inlineeditnonce' ) ) {
    return true;
   } else {
-   $nonce_actions = array( 'press-this', 'add-post', );
+   $nonce_actions = array( 'press-this', 'add-post', 'media-form', );
    if ( isset( $_POST['post_ID'] ) ) {
     $nonce_actions[] = 'update-post_' . $_POST['post_ID'];
    }
@@ -879,7 +880,7 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
    * duplicated in both arrays, keep the one in the 'denied'
    * array and discard the one in the 'allowed' array.
    */
-  if ( isset( $_POST['dates_allowed'] ) ) {
+  if ( isset( $_POST['dates_allowed'] ) && isset( $_POST['dates_denied'] ) ) {
    foreach ( $_POST['dates_allowed'] as $key => $date ) {
     if ( is_array( $_POST['dates_denied'] ) && in_array( $date, $_POST['dates_denied'] ) ) {
      unset( $_POST['dates_allowed'][$key] );
@@ -887,21 +888,22 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
    }
   }
   $time_slots = get_option( 'publish_scheduler_options', array() );
-  $time_slots['dates_allowed'] = ( ! empty( $_POST['dates_allowed'] ) ) ? $_POST['dates_allowed'] : array() ;
-  $time_slots['dates_denied'] = ( ! empty( $_POST['dates_denied'] ) ) ? $_POST['dates_denied'] : array() ;
+  $time_slots['dates_allowed'] = ( ! empty( $_POST['dates_allowed'] ) ) ? $_POST['dates_allowed'] : array();
+  $time_slots['dates_denied'] = ( ! empty( $_POST['dates_denied'] ) ) ? $_POST['dates_denied'] : array();
+  $time_slots['dates_denied'] = array_unique( array_merge( $_POST['dates_denied'], $time_slots['dates_denied'] ) );
+  $time_slots['dates_allowed'] = array_unique( array_merge( $_POST['dates_allowed'], $time_slots['dates_allowed'] ) );
 
   foreach ( $time_slots['dates_denied'] as $key => $date ) {
    $now = strtotime( date_i18n( 'Y-m-d', current_time( 'timestamp' ) ) );
-   if ( ( strtotime( $now ) > strtotime( $date ) ) || strlen( $date ) != 10 ) {
+   if ( ( $now > strtotime( $date ) ) || strlen( $date ) != 10 ) {
     unset( $time_slots['dates_denied'][$key] );
    } else {
     $time_slots['dates_denied'][$key] = sanitize_text_field( $date );
    }
   }
-
   foreach ( $time_slots['dates_allowed'] as $key => $date ) {
    $now = strtotime( date_i18n( 'Y-m-d', current_time( 'timestamp' ) ) );
-    if ( ( strtotime( $now ) > strtotime( $date ) ) || strlen( $date ) != 10 ) {
+    if ( ( $now > strtotime( $date ) ) || strlen( $date ) != 10 ) {
      unset( $key );
     } else {
      $time_slots['dates_allowed'][$key] = sanitize_text_field( $date );
