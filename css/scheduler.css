@@ -1,7 +1,6 @@
 #assign_time_slots label {
  float: left;
  display: block;
- width: 50px;
  position: relative;
  top: 5px;
  }

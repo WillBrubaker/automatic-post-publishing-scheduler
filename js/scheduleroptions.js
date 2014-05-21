@@ -127,4 +127,5 @@ jQuery(document).ready(function($) {
       $(this).prev().attr('name', newName);
     }
   });
+  $('#tabs').tabs();
 });

@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Publish Scheduler package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Publish Scheduler 2.0\n"
+"Project-Id-Version: Publish Scheduler 2.0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/automatic-post-"
 "publishing-scheduler\n"
-"POT-Creation-Date: 2014-05-19 23:02:22+00:00\n"
+"POT-Creation-Date: 2014-05-21 13:07:15+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,21 +27,42 @@ msgid "Donate to the future development of this plugin:"
 msgstr ""
 
 #: automatic-post-publishing-scheduler.php:179
+msgid "Configure Time Slots"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:180
+msgid "Configure Week Days"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:181
+msgid "Configure Dates"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:184
 msgid "Set Scheduler Options:"
 msgstr ""
 
-#: automatic-post-publishing-scheduler.php:182
+#: automatic-post-publishing-scheduler.php:187
 msgid ""
 "Input the number of time slots required.  If the number entered is less than "
 "the existing number, slots will be removed from the bottom up.  Changes will "
 "not be saved until committed using the 'Assign time slots' form below."
 msgstr ""
 
-#: automatic-post-publishing-scheduler.php:188
+#: automatic-post-publishing-scheduler.php:194
 msgid "Number of time slots required:"
 msgstr ""
 
-#: automatic-post-publishing-scheduler.php:197
+#: automatic-post-publishing-scheduler.php:198
+#: automatic-post-publishing-scheduler.php:217
+msgid "submit"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:201
+msgid "Assign time slots:"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:204
 msgid ""
 "Use the form below to put times into your time slots.  Duplicates are "
 "allowed. Invalid values will be discarded.  Ordering will also be done "
@@ -49,25 +70,25 @@ msgid ""
 "is pressed."
 msgstr ""
 
-#: automatic-post-publishing-scheduler.php:200
-msgid "Assign time slots:"
-msgstr ""
-
-#: automatic-post-publishing-scheduler.php:213
+#: automatic-post-publishing-scheduler.php:222
 msgid "Enable days of the week in your publishing schedule."
 msgstr ""
 
-#: automatic-post-publishing-scheduler.php:214
+#: automatic-post-publishing-scheduler.php:225
 msgid ""
 "Weekdays that are checked are enabled by your publishing schedule.  This can "
 "be overridden by specific date in the next section."
 msgstr ""
 
-#: automatic-post-publishing-scheduler.php:231
+#: automatic-post-publishing-scheduler.php:240
+msgid "Enable Days"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:245
 msgid "Define dates to exclude or allow in your publishing schedule"
 msgstr ""
 
-#: automatic-post-publishing-scheduler.php:234
+#: automatic-post-publishing-scheduler.php:248
 msgid ""
 "Dates entered below will be excluded from your publishing schedule (for "
 "holidays, etc) unless the 'Check to allow' box is checked.  In that case "
@@ -75,13 +96,123 @@ msgid ""
 "the week from the section above)."
 msgstr ""
 
+#: automatic-post-publishing-scheduler.php:264
+msgid "Save the Dates"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:340
+msgid "Defined Dates"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:342
+msgid "No dates defined yet"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:349
+#: automatic-post-publishing-scheduler.php:360
+#: automatic-post-publishing-scheduler.php:374
+msgid "Check to allow"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:349
+#: automatic-post-publishing-scheduler.php:360
+msgid "Delete?"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:374
+msgid "Add New Date:"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:773
+msgid "Post Scheduler Options"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:812
+msgid "Fork Me on GitHub"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:812
+msgid "Automatic Post Publishing Scheduler on github"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:813
+msgid "Support for Automatic Post Publishing Scheduler"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:814
+msgid "Review The Automatic Post Publishing Scheduler Plugin"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:814
+msgid "Rate Automatic Post Publishing Scheduler"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:815
+msgid "Shout it From the Rooftops!"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:815
+msgid "Tweet this plugin"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:816
+msgid ""
+"Donate to the development of the Automatic Post Publishing Scheduler plugin"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:824
+msgid "Donate Bitcoins"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:841
+msgid "Publish This Item Now"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:841
+msgid "Publish Now"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:872
+#: automatic-post-publishing-scheduler.php:934
+#: automatic-post-publishing-scheduler.php:967
+msgid "Update failed due to an unknown error"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:875
+#: automatic-post-publishing-scheduler.php:931
+#: automatic-post-publishing-scheduler.php:965
+msgid "success"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:954
+msgid "at least one weekday must be enabled"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:982
+msgid ""
+"The article you submitted has been scheduled for a later time to ensure "
+"articles are spaced out and published during higher traffic periods. Do not "
+"be alarmed, the web mechanic is trying to make sure your article gets the "
+"visibility it deserves!"
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:982
+msgid ""
+"Lower traffic periods: Late Nights, Early Mornings, and Weekends are "
+"generally avoided."
+msgstr ""
+
+#: automatic-post-publishing-scheduler.php:983
+msgid "Thanks for your article!"
+msgstr ""
+
 #. Plugin Name of the plugin/theme
 msgid "Publish Scheduler"
 msgstr ""
 
-#. #-#-#-#-#  automatic-post-publishing-scheduler.pot (Publish Scheduler 2.0)  #-#-#-#-#
+#. #-#-#-#-#  automatic-post-publishing-scheduler.pot (Publish Scheduler 2.0.1)  #-#-#-#-#
 #. Plugin URI of the plugin/theme
-#. #-#-#-#-#  automatic-post-publishing-scheduler.pot (Publish Scheduler 2.0)  #-#-#-#-#
+#. #-#-#-#-#  automatic-post-publishing-scheduler.pot (Publish Scheduler 2.0.1)  #-#-#-#-#
 #. Author URI of the plugin/theme
 msgid "http://www.willthewebmechanic.com"
 msgstr ""
