@@ -82,6 +82,10 @@ This plugin allows you to gain very precise control over when posts are publishe
 
 ## Changelog ##
 
+### v2.0.2 ###
+
+1. Minor UI improvements
+
 ### v2.0.1 ###
 
 1. You spoke, I listened! New feature added. This plugin will now auto-schedule posts that are created with the "Automatic Featured Image Posts" plugin.
