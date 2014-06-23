@@ -3,7 +3,7 @@
 Plugin Name: Publish Scheduler
 Plugin URI: http://www.willthewebmechanic.com
 Description: Replaces default publishing with queued publishing.
-Version: 2.0.1
+Version: 2.0.2
 Author: Will Brubaker
 Author URI: http://www.willthewebmechanic.com
 License: GPL 3.0+
@@ -34,7 +34,7 @@ class Publish_Scheduler
 
  static private $wwm_plugin_values = array(
   'name' => 'PublishScheduler',
-  'version' => '2.0.1',
+  'version' => '2.0.2',
   'slug' => 'PublishScheduler',
   'dbversion' => '1.5',//db version 1.1 was introduced in version 2.0, 1.2 in 2.1, 1.3 in 2.2, 1.4 in 2.3
   'supplementary' => array(
@@ -110,7 +110,7 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
 
   wp_enqueue_script( 'publish-now-ajax', plugins_url( 'js/publishnow.js', __FILE__ ), array( 'jquery', 'jquery-ui-dialog' ), self::$wwm_plugin_values['version'], true );
   wp_enqueue_style( 'jquery-ui-lightness', plugins_url( 'css/jquery-ui.min.css', __FILE__ ), array(), self::$wwm_plugin_values['version'] );
-  if ( strpos( $_SERVER['REQUEST_URI'], 'page=PublishSchedule.php' ) ) {
+  if ( strpos( $_SERVER['REQUEST_URI'], $this->menu_slug ) ) {
    wp_enqueue_script( 'scheduler-options-js', plugins_url( 'js/scheduleroptions.js', __FILE__ ), array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-tabs' ), self::$wwm_plugin_values['version'], true );
    wp_enqueue_style( 'scheduler-stylesheet', plugins_url( 'css/scheduler.css', __FILE__ ), null , self::$wwm_plugin_values['version'] );
   }

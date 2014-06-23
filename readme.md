@@ -4,7 +4,7 @@
 **License:** GPLv3.0+
 **Requires at least:** 3.6
 **Tested up to:** 3.9.1
-**Stable tag:** 2.0.1
+**Stable tag:** 2.0.2
 **Tags:** posts, publishing, scheduling, admin, author, automatic, blog, free, plugin
 **Donate Link:** http://www.willthewebmechanic.com/automatic-post-publishing-scheduler/
 
