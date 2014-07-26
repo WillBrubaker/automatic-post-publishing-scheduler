@@ -128,4 +128,20 @@ jQuery(document).ready(function($) {
     }
   });
   $('#tabs').tabs();
+
+  $('form#general-options').on('submit', function(e) {
+    e.preventDefault()
+    overlay = $('.overlay', $(this) )
+    overlay.show()
+    $.post(ajaxurl, $(this).serializeArray(), function(data) {
+      if ( true != data.success ) {
+        alert(data.data)
+      }
+    }).fail(function(xhr) {
+      alert('error code: ' + xhr.status + ' error message: ' + xhr.statusText)
+      $('form#general-options').trigger('reset')
+    }).always(function() {
+      overlay.hide()
+    })
+  })
 });
