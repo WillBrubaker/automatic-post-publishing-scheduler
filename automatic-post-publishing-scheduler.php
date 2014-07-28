@@ -3,7 +3,7 @@
 Plugin Name: Publish Scheduler
 Plugin URI: http://www.willthewebmechanic.com
 Description: Replaces default publishing with queued publishing.
-Version: 2.0.3
+Version: 2.1
 Author: Will Brubaker
 Author URI: http://www.willthewebmechanic.com
 License: GPL 3.0+
@@ -34,7 +34,7 @@ class Publish_Scheduler
 
  static private $wwm_plugin_values = array(
   'name' => 'PublishScheduler',
-  'version' => '2.0.3',
+  'version' => '2.1',
   'slug' => 'PublishScheduler',
   'dbversion' => '1.5',//db version 1.1 was introduced in version 2.0, 1.2 in 2.1, 1.3 in 2.2, 1.4 in 2.3
   'supplementary' => array(
@@ -158,6 +158,8 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
   }
   $variable_html = $this->get_variable_html();
   extract( $variable_html );
+  $general_options = get_option( 'wwm_scheduler_general_options', array() );
+  $show_checkbox = ( isset( $general_options['override'] ) ) ? absint( $general_options['override'] ) : 0;
   ?>
 
   <div class="wrap">
@@ -272,7 +274,7 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
      <h3><?php _e( 'General Plugin Options', $this->text_domain ); ?></h3>
      <form id="general-options" method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
       <div class="overlay"><span class="preloader"></span></div>
-      <label for="override-checkbox"><input type="checkbox" name="override" id="override-checkbox" <?php checked( get_option( 'wwm_scheduler_override', 0 ) ); echo '>'; _e( 'Allow admin users to override automatic scheduling?', $this->text_domain ); ?></label>
+      <label for="override-checkbox"><input type="checkbox" name="override" id="override-checkbox" <?php checked( $show_checkbox ); echo '>'; _e( 'Allow admins & editors to override automatic scheduling?', $this->text_domain ); ?></label>
       <?php wp_nonce_field( 'override-schedule', '_nonce', true, true ); ?>
       <input type="hidden" name="action" value="wwm_apps_general_options">
       <p><input type="submit" value="Update Options" class="button-primary"></p>
@@ -984,14 +986,20 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
   exit;
  }
 
+ /**
+  * AJAX handler for updating general plugin options
+  * @since 2.1
+  */
  public function update_general_options() {
   if ( ! wp_verify_nonce( $_POST['_nonce'], 'override-schedule' ) || ! current_user_can( 'manage_options' ) ) {
    status_header( 403 );
    exit;
   }
 
+  $general_options = get_option( 'wwm_scheduler_general_options', array() );
   $new_value = ( isset( $_POST['override'] ) ) ? 1 : 0;
-  $success = update_option( 'wwm_scheduler_override', $new_value );
+  $general_options['override'] = $new_value;
+  $success = update_option( 'wwm_scheduler_general_options', $general_options );
   wp_send_json_success();
  }
 
@@ -1043,7 +1051,9 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
  {
 
   global $post;
-  if ( current_user_can( 'edit_others_posts' ) && 'publish' != $post->post_status ) {
+  $general_options = get_option( 'wwm_scheduler_general_options', array() );
+  $show_checkbox = ( isset( $general_options['override'] ) ) ? absint( $general_options['override'] ) : 0;
+  if ( current_user_can( 'edit_others_posts' ) && 'publish' != $post->post_status && $show_checkbox ) {
 
    ?>
    <div class="post-scheduling-override misc-pub-section">
