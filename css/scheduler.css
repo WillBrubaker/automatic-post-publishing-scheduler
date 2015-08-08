@@ -69,3 +69,7 @@ margin: 1px 2px;
 form#excluded-dates, form#excluded-days, form#set_time_slots, form#assign_time_slots {
  position: relative;
 }
+
+.ui-dialog {
+	z-index: 9999;
+}
