@@ -3,8 +3,8 @@
 **Contributors:** WilltheWebMechanic
 **License:** GPLv3.0+
 **Requires at least:** 3.6
-**Tested up to:** 4.3
-**Stable tag:** 2.1.2
+**Tested up to:** 4.4
+**Stable tag:** 2.1.3
 **Tags:** posts, publishing, scheduling, admin, author, automatic, blog, free, plugin
 **Donate Link:** http://www.willthewebmechanic.com/automatic-post-publishing-scheduler/
 
@@ -81,6 +81,11 @@ This plugin allows you to gain very precise control over when posts are publishe
 
 
 ## Changelog ##
+
+### v2.1.3 ###
+1. Tested against WordPress 4.4
+2. Cleaned up some PHP notices
+3. updated external assets
 
 ### v2.1.2 ###
 
