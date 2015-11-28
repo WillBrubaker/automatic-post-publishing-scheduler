@@ -837,9 +837,9 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
 		if ( ( ! current_user_can( 'edit_others_posts' ) ) || ( ! wp_verify_nonce( $_POST['_wp_nonce'], 'publish-now' ) ) ) {
 			exit;
 		}
-		$tz = get_option( 'timezone_string' );
+		$tz = get_option( 'timezone_string', 'UTC' );
 		$phptz_holder = date_default_timezone_get();
-		date_default_timezone_set( $tz);
+		date_default_timezone_set( $tz );
 		$post_date = date( 'Y-m-d H:i:s' );
 		$args = array(
 			'ID' => $_POST['pid'],
