@@ -132,7 +132,7 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
 			* allow other plugins to overwrite the panel by using
 			* a higher number version.
 			*/
-		$plugin_panel_version = 1;
+		$plugin_panel_version = 2;
 		add_filter( 'wwm_plugin_links', array( $this, 'this_plugin_link' ) );
 		if ( empty( $_wwm_plugins_page ) || ( is_array( $_wwm_plugins_page ) && $plugin_panel_version > $_wwm_plugins_page[1] ) ) {
 			$_wwm_plugins_page[0] = add_menu_page( 'WtWM Plugins', 'WtWM Plugins', 'manage_options', 'wwm_plugins', array( $this, 'wwm_plugin_links' ), plugins_url( 'images/wwm_wp_menu.png', __FILE__ ), '90.314' );
@@ -444,7 +444,7 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
 			return $data;
 		}
 
-		if ( 'Schedule' == $_POST['publish'] ) {
+		if ( isset( $_POST['publish'] ) && 'Schedule' == $_POST['publish'] ) {
 			//set current time to the time it asked for...
 			$current_time = strtotime( $_POST['aa'] . '-' . $_POST['mm'] . '-' . $_POST['jj'] . ' ' . $_POST['hh'] . ':' . $_POST['mn'] );
 		}
@@ -747,8 +747,7 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
 		* @param  array $links the array of links
 		* @return array $links the filtered array of links
 		*/
-	public function this_plugin_link( $links )
-	{
+	public function this_plugin_link( $links ) {
 
 		$this->wwm_page_link = $menu_page_url = menu_page_url( 'PublishSchedule.php', 0 );
 		$links[] = '<a href="' . $this->wwm_page_link . '">' . __( 'Post Scheduler Options', $this->text_domain ) . '</a>' . "\n";
