@@ -3,7 +3,7 @@
 Plugin Name: Publish Scheduler
 Plugin URI: http://www.willthewebmechanic.com
 Description: Replaces default publishing with queued publishing.
-Version: 2.1.3
+Version: 2.1.4
 Author: Will Brubaker
 Author URI: http://www.willthewebmechanic.com
 License: GPL 3.0+
@@ -34,7 +34,7 @@ class Publish_Scheduler
 
 	static private $wwm_plugin_values = array(
 		'name' => 'PublishScheduler',
-		'version' => '2.1.3',
+		'version' => '2.1.4',
 		'slug' => 'PublishScheduler',
 		'dbversion' => '1.5',//db version 1.1 was introduced in version 2.0, 1.2 in 2.1, 1.3 in 2.2, 1.4 in 2.3
 		'supplementary' => array(

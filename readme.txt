@@ -2,8 +2,8 @@
 Contributors: WilltheWebMechanic
 License: GPLv3.0+
 Requires at least: 3.6
-Tested up to: 4.4
-Stable tag: 2.1.3
+Tested up to: 4.4.1
+Stable tag: 2.1.4
 Tags: posts, publishing, scheduling, admin, author, automatic, blog, free, plugin
 Donate Link: http://www.willthewebmechanic.com/automatic-post-publishing-scheduler/
 
@@ -68,6 +68,9 @@ This plugin allows you to gain very precise control over when posts are publishe
 7. The "Quick Edit" interface. Admin users can override scheduled time/date here.
 
 == Changelog ==
+
+= v2.1.4 =
+1. Add handling for XML-RPC requests
 
 = v2.1.3 =
 1. Tested against WordPress 4.4
