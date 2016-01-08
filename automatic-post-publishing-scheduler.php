@@ -392,7 +392,7 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
 			return $data;
 		}
 
-		if ( ! $this->is_nonce_valid() || ! current_user_can( 'publish_posts' ) ) {
+		if ( ( ! 'XMLRPC_REQUEST' ) && ( ! $this->is_nonce_valid() || ! current_user_can( 'publish_posts' ) ) ) {
 			return $data;
 		}
 
@@ -439,7 +439,7 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
 		$post_date_timestamp = strtotime( $post_date );
 		$now_timestamp = strtotime( date_i18n( 'Y-m-d H:i', $current_time ) );//the seconds have been stripped from $post_date_timestamp, so they need to be stripped here too.
 
-		if ( $post_date_timestamp < $now_timestamp && current_user_can( 'edit_others_posts' ) ) {
+		if ( ! 'XMLRPC_REQUEST' &&  $post_date_timestamp < $now_timestamp && current_user_can( 'edit_others_posts' ) ) {
 			$data['post_status'] = 'publish';
 			return $data;
 		}
@@ -451,7 +451,7 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
 		//at this point, anyone who has permission to override a scheduled slot has done so.
 		//now to check if the author is trying to alter their own time slot.
 		//todo do something to either add a custom capability or otherwise allow plugin users greater granular control over who can alter time slots.
-		if ( 'future' == $_POST['original_post_status'] ) {
+		if ( isset( $_POST['original_post_status'] ) && 'future' == $_POST['original_post_status'] ) {
 			$asked_for_time = strtotime( $_POST['aa'] . '-' . $_POST['mm'] . '-' . $_POST['jj'] . ' ' . $_POST['hh'] . ':' . $_POST['mn'] );
 			$original_time_slot = strtotime( $_POST['hidden_aa'] . '-' . $_POST['hidden_mm'] . '-' . $_POST['hidden_jj'] . ' ' . $_POST['hidden_hh'] . ':' . $_POST['hidden_mn'] );
 			if ( $original_time_slot == $asked_for_time ) {
