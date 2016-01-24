@@ -3,7 +3,7 @@
 Plugin Name: Publish Scheduler
 Plugin URI: http://www.willthewebmechanic.com
 Description: Replaces default publishing with queued publishing.
-Version: 2.1.4
+Version: 2.1.5
 Author: Will Brubaker
 Author URI: http://www.willthewebmechanic.com
 License: GPL 3.0+
@@ -34,7 +34,7 @@ class Publish_Scheduler
 
 	static private $wwm_plugin_values = array(
 		'name' => 'PublishScheduler',
-		'version' => '2.1.4',
+		'version' => '2.1.5',
 		'slug' => 'PublishScheduler',
 		'dbversion' => '1.5',//db version 1.1 was introduced in version 2.0, 1.2 in 2.1, 1.3 in 2.2, 1.4 in 2.3
 		'supplementary' => array(
@@ -402,7 +402,6 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
 		date_default_timezone_set( 'UTC' );
 		$current_time = current_time( 'timestamp' );
 		$tz = get_option( 'timezone_string' );
-
 		//a user without admin/editor rights cannot alter the post status or the time/date of published posts:
 		if ( ! current_user_can( 'edit_others_posts' ) ) {
 			$post = get_post( $_POST['post_ID'] );
@@ -434,12 +433,12 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
 			$post_date = date_i18n( 'Y-m-d H:i', strtotime( $data['post_date'] ) );
 			$post_date_gmt = gmdate( 'Y-m-d H:i', strtotime( $data['post_date'] ) );
 		}
-
+		$post_date_ts = strtotime( $post_date );
+		$post_date_gmt_ts = strtotime( $post_date_gmt );
+		$diff = $post_date_gmt_ts - $post_date_ts;
 		//check if the time sent is in the past.  If so, return $data.
-		$post_date_timestamp = strtotime( $post_date );
 		$now_timestamp = strtotime( date_i18n( 'Y-m-d H:i', $current_time ) );//the seconds have been stripped from $post_date_timestamp, so they need to be stripped here too.
-
-		if ( ! 'XMLRPC_REQUEST' &&  $post_date_timestamp < $now_timestamp && current_user_can( 'edit_others_posts' ) ) {
+		if ( ! 'XMLRPC_REQUEST' &&  $post_date_ts < $now_timestamp && current_user_can( 'edit_others_posts' ) ) {
 			$data['post_status'] = 'publish';
 			return $data;
 		}
@@ -459,8 +458,8 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
 			}
 			elseif ( $asked_for_time < $original_time_slot ) {//Nope, earlier time slot is not yours. Can not has.
 				$post_date = date_i18n( 'Y-m-d H:i:s', $original_time_slot );
-				$post_date_gmt = date_i18n( 'Y-m-d H:i:s', $original_time_slot, true );
-				$post_date_gmt = date_i18n( 'Y-m-d H:i:s', strtotime( $original_time_slot . ' ' . get_option( 'timezone_string' ) ), true );
+				$gmt_ts = $original_time_slot + $diff;
+				$post_date_gmt = date_i18n( 'Y-m-d H:i:s', $gmt_ts, true );
 				$data['post_status'] = 'future';
 				$data['post_date'] = $post_date;
 				$data['post_date_gmt'] = $post_date_gmt;
@@ -546,10 +545,11 @@ public $wwm_page_link, $page_title, $menu_title, $menu_slug, $menu_link_text, $t
 		}
 
 		$publish_time = reset( $available_time_slots );
+		$gmt_ts = $publish_time + $diff;
 		//take $publish_time which is a timestamp - convert it to a time/date with localization goodness for WP
 		$post_date = date_i18n( 'Y-m-d H:i:s', $publish_time );
-		//and also convert it to a gmt time/date.
-		$post_date_gmt = date_i18n( 'Y-m-d H:i:s', strtotime( $post_date . ' ' . $tz ), true );
+		//convert the gmt timestamp to a time/date.
+		$post_date_gmt = date_i18n( 'Y-m-d H:i:s', $gmt_ts, true );
 		//schedule post for that slot
 		$data['post_status'] = 'future';
 		$data['post_date'] = $post_date;
